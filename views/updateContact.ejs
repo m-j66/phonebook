@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Update Contact</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <%- include('./partials/nav', { user: user }) %>
+
+    <div class="container mt-5">
+      <h1 class="mb-4">Update Contact</h1>
+
+      <form id="updateContactForm" enctype="multipart/form-data">
+        <input
+          type="hidden"
+          id="contactId"
+          name="contactId"
+          value="<%= contact.id %>"
+        />
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            value="<%= contact.name %>"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            value="<%= contact.email %>"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phoneNumber"
+            class="form-control"
+            value="<%= contact.phoneNumber %>"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="photo">Photo:</label>
+          <input
+            type="file"
+            id="photo"
+            name="photo"
+            class="form-control-file"
+          />
+          <% if (contact.photo) { %>
+          <img
+            src="<%= contact.photo %>"
+            alt="<%= contact.name %>'s photo"
+            class="img-thumbnail mt-2"
+            width="100"
+            height="100"
+          />
+          <% } %>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Contact</button>
+      </form>
+
+      <div id="userId" data-id="<%= user.id %>"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <%- include('./partials/scripts') %>
+
+    <script>
+      document
+        .getElementById("updateContactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const userId = document.getElementById("userId").dataset.id;
+          console.log("User ID:", userId);
+          const formData = new FormData(this);
+          const contactId = document.getElementById("contactId").value;
+
+          fetch(`/api/contacts/${contactId}`, {
+            method: "PUT",
+            body: formData,
+          })
+            .then((response) => {
+              if (response.ok) {
+                window.location.href = `/api/contacts/${userId}`;
+              } else {
+              }
+            })
+            .then((text) => {
+              if (text) {
+                alert(text);
+              }
+            })
+            .catch((error) => {
+              console.error("Error updating contact:", error);
+              alert("Failed to update contact.");
+            });
+        });
+    </script>
+  </body>
+</html>

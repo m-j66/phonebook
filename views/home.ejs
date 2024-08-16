@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Homepage</title>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+
+    <div class="container mt-4">
+      <h1 class="display-4">Welcome to Phone Book</h1>
+      <p class="lead">
+        Manage your contacts easily with our Phone Book application. Keep track
+        of names, email addresses, phone numbers, and photos all in one place.
+      </p>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <h3>Features:</h3>
+          <ul>
+            <li>Add new contacts</li>
+            <li>Update existing contacts</li>
+            <li>Delete contacts you no longer need</li>
+            <li>View contact details including photos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./partials/scripts') %>
+  </body>
+</html>

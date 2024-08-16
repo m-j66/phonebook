@@ -1,0 +1,34 @@
+[
+  {
+    "id": "d25f40c6-5c50-4e20-9fe3-2bd2cef43df4",
+    "name": "mahiiii",
+    "email": "mahii@example.com",
+    "phoneNumber": "12345678901",
+    "photo": "/uploads/1723836948726-p1.jfif",
+    "userId": "277217d9-6364-4fbc-97c7-ff8126f9650f"
+  },
+  {
+    "id": "0aa561fa-611f-4327-91c7-f5c300480d00",
+    "name": "alice joes",
+    "email": "alice@gmail.com",
+    "phoneNumber": "12345678901",
+    "photo": "/uploads/1723836278646-p4.jfif",
+    "userId": "277217d9-6364-4fbc-97c7-ff8126f9650f"
+  },
+  {
+    "id": "88a7559d-10ac-4905-9fe2-89b93baa7d8f",
+    "name": "alex volcov",
+    "email": "alex@gmail.com",
+    "phoneNumber": "12345678901",
+    "photo": "/uploads/1723836714595-p2.jfif",
+    "userId": "277217d9-6364-4fbc-97c7-ff8126f9650f"
+  },
+  {
+    "id": "8a5d5ad3-21ba-42d3-9bc3-23002fc01fa2",
+    "name": "liliy bloom",
+    "email": "lily@gmail.com",
+    "phoneNumber": "12345678901",
+    "photo": "/uploads/1723836906473-p4.jfif",
+    "userId": "277217d9-6364-4fbc-97c7-ff8126f9650f"
+  }
+]

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Contacts</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+
+    <div class="container mt-5">
+      <div class="mb-4 text-center">
+        <a href="/api/contacts/addContact" class="btn btn-primary btn-lg">
+          Add Contact
+        </a>
+      </div>
+
+      <% if (contacts && contacts.length > 0) { %>
+      <h1 class="mb-4">Contacts</h1>
+      <ul class="list-group">
+        <% contacts.forEach(contact => { %>
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          <div class="contact-details">
+            <h4 class="mb-1"><%= contact.name %></h4>
+            <p class="mb-1"><strong>Email:</strong> <%= contact.email %></p>
+            <p class="mb-1">
+              <strong>Phone Number:</strong> <%= contact.phoneNumber %>
+            </p>
+            <% if (contact.photo) { %>
+            <img
+              src="<%= contact.photo %>"
+              alt="<%= contact.name %>'s photo"
+              class="img-thumbnail"
+              width="100"
+              height="100"
+            />
+            <% } else { %>
+            <p>No photo available.</p>
+            <% } %>
+          </div>
+
+          <div class="contact-actions">
+            <a
+              href="/api/contacts/updateContact/<%= contact.id %>"
+              class="btn btn-warning btn-sm"
+              >Update</a
+            >
+            <button
+              class="btn btn-danger btn-sm delete-contact ml-2"
+              data-id="<%= contact.id %>"
+            >
+              Delete
+            </button>
+          </div>
+        </li>
+        <% }) %>
+      </ul>
+      <% } else { %>
+      <p class="text-center mt-4">No contacts found.</p>
+      <% } %>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <%- include('./partials/scripts') %>
+
+    <script>
+      document.querySelectorAll(".delete-contact").forEach((button) => {
+        button.addEventListener("click", function () {
+          const contactId = this.getAttribute("data-id");
+          if (confirm("Are you sure you want to delete this contact?")) {
+            fetch(`/api/contacts/${contactId}`, {
+              method: "DELETE",
+            }).then((response) => {
+              if (response.ok) {
+                window.location.reload();
+              } else {
+                alert("Failed to delete contact.");
+              }
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
